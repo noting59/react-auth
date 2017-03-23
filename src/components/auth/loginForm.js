@@ -2,7 +2,7 @@ import React from 'react';
 import validateInput from '../../vendor/loginValidator';
 import TextFieldGroup from '../common/textFieldGroup';
 import { connect } from 'react-redux';
-import { login } from '../../actions/loginAction';
+import { login } from '../../actions/authActions';
 
 
 class LoginForm extends React.Component {
