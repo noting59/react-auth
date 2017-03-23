@@ -13,11 +13,13 @@ export function setCurrentUser(user) {
 export function login(userData) {
     return dispatch => {
         return axios.post('http://localhost:8000/api/v1/login', { email: userData.email, password: userData.password }).then(res => {
-            console.log(res.data.user);
+            const user = res.data.user;
             const token = res.data.token;
+            console.log(token);
             localStorage.setItem('jwtToken', token);
+            localStorage.setItem('user', JSON.stringify(user));
             setAuthorizationToken(token);
-            dispatch(setCurrentUser(res.data.user));
+            dispatch(setCurrentUser(user));
         });
     }
 }
