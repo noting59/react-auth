@@ -25,7 +25,7 @@ export default function validateInput(data) {
     }
 
     if (!Validator.equals(data.password, data.password_confirmation)) {
-        errors.password_confirmation = 'This field is required';
+        errors.password_confirmation = 'The password doesn`t match';
     }
 
     return {
