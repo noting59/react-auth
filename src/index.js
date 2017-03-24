@@ -8,6 +8,7 @@ import rootReducer from './rootReducer'
 import setAuthorizationToken from './utils/setAuthorizationToken'
 import { setCurrentUser } from './actions/authActions';
 import routes from './routes';
+import jwt from 'jsonwebtoken';
 
 const store = createStore(
     rootReducer,
@@ -18,7 +19,7 @@ const store = createStore(
 );
 setAuthorizationToken(localStorage.jwtToken);
 if(localStorage.jwtToken) {
-    store.dispatch(setCurrentUser(JSON.parse(localStorage.user)));
+    store.dispatch(setCurrentUser(jwt.decode(localStorage.jwtToken)));
 }
 
 ReactDOM.render(
