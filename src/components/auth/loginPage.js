@@ -3,13 +3,17 @@ import LoginForm from './loginForm';
 import FacebookLogin from './facebookLogin';
 import VKLogin from './vkLogin';
 import classnames from 'classnames';
+import { socialLogin } from '../../actions/authActions';
+import { connect } from 'react-redux';
+import { addFlashMessage } from '../../actions/flashMessages';
 
 class LoginPage extends React.Component {
     constructor (props, context) {
         super(props, context);
 
         this.state = {
-            errors: {}
+            errors: {},
+            isLoading: false
         };
 
         this.setState.bind(this);
@@ -21,7 +25,21 @@ class LoginPage extends React.Component {
         if(res.error) {
             this.setState({ errors:{ social: res.error.message } })
         } else {
-            console.log(res);
+            let userData = {
+                name: res.name,
+                social_id: res.id,
+                social_link: res.link,
+                service: 'fb'
+            }
+            this.props.socialLogin(userData).then(
+                () => { this.props.addFlashMessage({
+                        type: 'success',
+                        text: 'You logged in with Facebook successfully. Welcome!'
+                    })
+                    this.context.router.push('/');
+                },
+                ( err ) => this.setState({ errors: err.response.data.data.error, isLoading: false })
+            );
         }
     };
 
@@ -72,4 +90,9 @@ class LoginPage extends React.Component {
     }
 }
 
-export default LoginPage;
+LoginPage.contextTypes = {
+    router: React.PropTypes.object.isRequired
+}
+
+
+export default connect(null, { addFlashMessage, socialLogin })(LoginPage);
