@@ -2,8 +2,21 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/authActions';
+import classnames from 'classnames';
 
 class NavigationBar extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            menu: false
+        };
+    }
+
+    menuShowHide(e) {
+        this.setState({ menu: !this.state.menu });
+    }
+
     logout(e) {
         e.preventDefault();
         this.props.logout();
@@ -20,26 +33,25 @@ class NavigationBar extends React.Component {
 
         const guestLinks = (
             <ul className="nav navbar-nav navbar-right">
-                <li><Link to="/signup">Sign Up</Link></li>
-                <li><Link to="/login">Login</Link></li>
+                <li><Link onClick={this.menuShowHide.bind(this)} to="/signup">Sign Up</Link></li>
+                <li><Link onClick={this.menuShowHide.bind(this)} to="/login">Login</Link></li>
             </ul>
         )
         return (
-            <nav className="navber navbar-default">
+            <nav className="navbar navbar-default">
                 <div className="container-fluid">
                     <div className="navbar-header">
-                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span className="sr-only">Toggle navigation</span>
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                        </button>
-                        <Link to="/" className="navbar-brand">React Auth</Link>
+                        <a onClick={this.menuShowHide.bind(this)} type="button" className="navbar-menu">
+                            <span className="navbar-menu-icon"></span>
+                            <span className="navbar-menu-icon"></span>
+                            <span className="navbar-menu-icon"></span>
+                        </a>
+                        <Link to="/" className="navbar-brand">SportShedule</Link>
                     </div>
 
-                    <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        { isAuthenticated ? userLinks : guestLinks }
-                    </div>
+                </div>
+                <div className={classnames("navbar-collapse navbar-dropdown", { 'navbar-dropdown-active': this.state.menu })}>
+                { isAuthenticated ? userLinks : guestLinks }
                 </div>
             </nav>
         );
