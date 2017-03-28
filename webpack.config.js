@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = {
   context: __dirname,
-  entry: './src/index.js',
+  entry: './src/js/index.js',
   output: {
     path: __dirname,
     filename: 'bundle.js',
@@ -15,9 +15,9 @@ const config = {
       test: /\.(js|jsx)$/,
       loader: 'babel',
     },
-      {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('css!sass'),
+    {
+          test: /\.scss$/,
+          loader: ExtractTextPlugin.extract('css-loader!sass-loader'),
       }],
   },
   devServer: {
@@ -36,9 +36,7 @@ const config = {
       minimize: true,
       mangle: { except: ['$super', '$', 'exports', 'require', '$q', '$ocLazyLoad'] },
     }),
-    new ExtractTextPlugin('src/public/stylesheets/app.css', {
-      allChunks: true,
-    }),
+    new ExtractTextPlugin('style.css'),
   ],
   node: {
       net: 'empty',

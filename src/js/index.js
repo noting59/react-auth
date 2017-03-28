@@ -9,6 +9,7 @@ import setAuthorizationToken from './utils/setAuthorizationToken'
 import { setCurrentUser } from './actions/authActions';
 import routes from './routes';
 import jwt from 'jsonwebtoken';
+import scss from '../sass/index.scss';
 
 const store = createStore(
     rootReducer,
