@@ -50,11 +50,15 @@ class LoginPage extends React.Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="col-md-4 col-md-offset-4">
+            <div className="container">
+                <div className="auth">
+                    <h5 className="auth-title">Login</h5>
                     <div className="col-md-12">
-                        <h1 className="text-center">Login!</h1>
+                        <LoginForm />
+
+                        <div className="auth-or">OR</div>
                     </div>
+
                     <div className={classnames("col-md-12 clearfix", { 'has-error': this.state.errors.social })}>
                         <FacebookLogin socialId="745695028928250"
                            language="en_US"
@@ -62,27 +66,17 @@ class LoginPage extends React.Component {
                            fields="name,email,picture,link,locale"
                            xfbml={true}
                            version="v2.5"
-                           className="loginBtn loginBtn--facebook"
+                           className="btn btn-social btn-facebook"
                            callback={this.responseFacebook}
-                           textButton="Sign In"/>
+                           textButton="Connect with Facebook"/>
                          <VKLogin
                             apiId="5947767"
                             autoLoad={true}
                             scope="public_profile, email"
-                            className='loginBtn loginBtn--vk'
-                            textButton="Sign In"
+                            className='btn btn-social btn-vk'
+                            textButton="Connect with VK"
                             callback={this.responseVk} />
                             {this.state.errors.social && <span className="help-block">{this.state.errors.social}</span>}
-                    </div>
-                    <div className='col-md-12 line'>
-                    </div>
-                    <div className="col-md-12">
-                        <h5 className="text-center">OR</h5>
-                    </div>
-                    <div className='col-md-12 line'>
-                    </div>
-                    <div className="col-md-12">
-                        <LoginForm />
                     </div>
                 </div>
             </div>

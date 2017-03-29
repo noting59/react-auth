@@ -57,26 +57,25 @@ class SignupForm extends React.Component {
         const { errors } = this.state;
         return (
             <form onSubmit={this.onSubmit}>
-                <h1>Join our community!</h1>
                 <TextFieldGroup
                     onChange = {this.onChange}
                     field = 'name'
                     error = {errors.name}
-                    label = 'Name'
+                    placeholder = 'Name'
                     value = {this.state.name}
                 />
                 <TextFieldGroup
                     onChange = {this.onChange}
                     field = 'email'
                     error = {errors.email}
-                    label = 'Email'
+                    placeholder = 'Email'
                     value = {this.state.email}
                 />
                 <TextFieldGroup
                     onChange = {this.onChange}
                     field = 'password'
                     error = {errors.password}
-                    label = 'Password'
+                    placeholder = 'Password'
                     value = {this.state.password}
                     type  = 'password'
                 />
@@ -84,12 +83,12 @@ class SignupForm extends React.Component {
                     onChange = {this.onChange}
                     field = 'password_confirmation'
                     error = {errors.password_confirmation}
-                    label = 'Confirm Password'
+                    placeholder = 'Confirm Password'
                     value = {this.state.password_confirmation}
                     type  = 'password'
                 />
-                <div className="form-group">
-                    <button disabled={this.state.isLoading} className="btn btn-primary btn-lg">Sign up</button>
+                <div className="auth__submit">
+                    <button disabled={this.state.isLoading} className="auth__submit-button">SIGN UP</button>
                 </div>
             </form>
         )

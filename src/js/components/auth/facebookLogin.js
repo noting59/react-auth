@@ -43,17 +43,17 @@ export default class FacebookLogin extends React.Component {
     }
   };
 
-  clickHandler () {
-    FB.login(this.checkLoginState.bind(this), { scope: this.props.scope });
+  clickHandler (e) {
+      e.preventDefault();
+      FB.login(this.checkLoginState.bind(this), { scope: this.props.scope });
   };
 
   render() {
     return (
-      <div className='left'>
-        <button className={this.props.className} onClick={this.clickHandler.bind(this)}>
-          {this.props.textButton}
-        </button>
-      </div>
+      <a className={this.props.className} onClick={this.clickHandler.bind(this)}>
+        {this.props.textButton}
+        <span className="fa fa-facebook"></span>
+      </a>
     );
   }
 }

@@ -56,19 +56,19 @@ class LoginForm extends React.Component {
                     onChange = {this.onChange}
                     field = 'email'
                     error = {errors.email}
-                    label = 'Email'
+                    placeholder = 'Email'
                     value = {this.state.email}
                 />
                 <TextFieldGroup
                     onChange = {this.onChange}
                     field = 'password'
                     error = {errors.password}
-                    label = 'Password'
+                    placeholder = 'Password'
                     value = {this.state.password}
                     type  = 'password'
                 />
-                <div className="form-group">
-                    <button disabled={this.state.isLoading} className="btn btn-primary btn-lg">Log in</button>
+                <div className="auth__submit">
+                    <button disabled={this.state.isLoading} className="auth__submit-button">LOGIN</button>
                 </div>
             </form>
         )

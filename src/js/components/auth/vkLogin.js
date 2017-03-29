@@ -47,7 +47,8 @@ class VKLogin extends React.Component {
         }
     };
 
-    clickHandler = () => {
+    clickHandler = (e) => {
+        e.preventDefault();
         if (!this.state.isSdkLoaded || this.state.isProcessing || this.props.disabled) {
             return;
         }
@@ -58,11 +59,10 @@ class VKLogin extends React.Component {
   render() {
     const { disabled, callback, apiId, className, textButton } = this.props;
     return (
-      <div className='right'>
-        <button className={className} onClick={this.clickHandler}>
+        <a className={className} onClick={this.clickHandler}>
             {textButton}
-        </button>
-      </div>
+            <span className="fa fa-vk"></span>
+        </a>
     );
   }
 }

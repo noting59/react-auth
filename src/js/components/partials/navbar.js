@@ -37,10 +37,10 @@ class NavigationBar extends React.Component {
 
         const guestLinks = (
             <div className="auth-button">
-                <Link className="auth-button__link" to="#login">
+                <Link className="auth-button__link" to="/login">
                     <i className="fa fa-sign-in" aria-hodden='true'> Login</i>
                 </Link>
-                <Link className="auth-button__link" to="#register">
+                <Link className="auth-button__link" to="/signup">
                     <i className="fa fa-pencil-square-o" aria-hodden='true'> Register</i>
                 </Link>
             </div>
@@ -48,7 +48,19 @@ class NavigationBar extends React.Component {
 
         return (
             <header className="header clearfix">
-                <div className="header__menu-button">
+                <div className={classnames("overlay-menu", { 'overlay-menu--open': this.state.menu })}>
+                    <button className="overlay-menu__close-button" onClick={this.menuShowHide.bind(this)}>
+                        <i className="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                    <nav>
+        				<ul>
+        					<li><a href="/" onClick={this.menuShowHide.bind(this)}>Home</a></li>
+        					<li><a href="/about" onClick={this.menuShowHide.bind(this)}>About</a></li>
+        					<li><a href="/contact" onClick={this.menuShowHide.bind(this)}>Contact</a></li>
+        				</ul>
+        			</nav>
+                </div>
+                <div className="header__menu-button" onClick={this.menuShowHide.bind(this)}>
                     <i className='fa fa-bars' aria-hodden='true'></i>
                 </div>
 
